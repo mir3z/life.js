@@ -1,0 +1,7 @@
+.life-canvas {
+  cursor: default;
+
+  &.translate {
+    cursor: move;
+  }
+}

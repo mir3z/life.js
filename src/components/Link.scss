@@ -1,0 +1,13 @@
+.link {
+  text-decoration: none;
+  cursor: pointer;
+  color: #222;
+
+  &:hover {
+    color: #333;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

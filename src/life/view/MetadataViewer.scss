@@ -1,0 +1,71 @@
+.metadata-viewer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  .metadata-trigger {
+    color: #eee;
+    font-size: 18px;
+    padding: 5px 8px 6px 7px;
+    cursor: pointer;
+    border-top-right-radius: 4px;
+
+    &:hover {
+      color: #fff;
+      background-color: #333;
+    }
+
+    &:active {
+      background: #444;
+    }
+  }
+
+  .dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 10, 0.4);
+  }
+
+  .metadata-dialog {
+    flex: 0 0 auto;
+    max-width: 700px;
+
+    .body {
+      padding: 20px 50px 40px;
+    }
+  }
+
+  .metadata-entry {
+    color: #eee;
+
+    @mixin section_spacing($name, $padding: 10px) {
+      &.#{ $name } {
+        padding-top: $padding;
+      }
+      &.#{ $name } ~ .#{ $name } {
+        padding-top: 0;
+      }
+    }
+    &.name {
+      font-size: 20px;
+      font-weight: bold;
+      padding-bottom: 10px;
+    }
+
+    @include section_spacing("name");
+    @include section_spacing("author");
+    @include section_spacing("comment");
+
+    .metadata-name {
+      margin-right: 5px;
+    }
+  }
+}

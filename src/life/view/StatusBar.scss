@@ -1,0 +1,19 @@
+.status-bar {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 3px 8px;
+    color: #fff;
+    font-size: 14px;
+
+    .entry {
+        display: inline-block;
+        margin-left: 20px;
+        font-weight: bold;
+
+        .label {
+            padding-right: 3px;
+            font-weight: normal;
+        }
+    }
+}
