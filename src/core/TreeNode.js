@@ -148,7 +148,7 @@ TreeNode.recache = (root) => {
 
 window.t = TreeNode;
 
-setInterval(() => console.warn("cache", window.t.__cache.size), 500);
+// setInterval(() => console.warn("cache", window.t.__cache.size), 500);
 
 function canonicalize(node, cache) {
     return cache.setOrGet(node);

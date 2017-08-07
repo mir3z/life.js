@@ -3,7 +3,6 @@ export const STOP_EVOLUTION = "life/evolution/stop";
 export const RESET_EVOLUTION = "life/evolution/reset";
 export const NEXT_GENERATION = "life/evolution/next-generation";
 export const SUPER_GENERATION = "life/evolution/super-generation";
-export const UPDATE_GENERATION_NUMBER = "life/evolution/update-generation-number";
 
 export const EVOLUTION_STATE = {
     RUNNING: "evolution-state-running",
@@ -17,10 +16,7 @@ export function createEvolutionActions({ clock }) {
         nextGeneration,
 
         superGeneration() {
-            return (dispatch, getState) => {
-                dispatch({ type: SUPER_GENERATION });
-                dispatch({ type: UPDATE_GENERATION_NUMBER, worldLevel: getWorld(getState()).level });
-            }
+            return { type: SUPER_GENERATION };
         },
 
         stopEvolution: () => ({ type: STOP_EVOLUTION }),
@@ -45,5 +41,4 @@ export function createEvolutionActions({ clock }) {
     };
 }
 
-const getEvolutionState = ({ life: { evolution: { state } } }) => state;
-const getWorld = ({ life: { world } }) => world;
+const getEvolutionState = ({ life: { evolution } }) => evolution;

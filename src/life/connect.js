@@ -19,7 +19,7 @@ export function connectWorldview(actions, { Canvas, ControlPane, StatusBar, Meta
 export function connectCanvas(actions, canvasRendererFactory) {
     return connect(
         ({ life: { world, viewport } }) => ({
-            world,
+            world: world.root,
             viewport,
             transformation: Transformation.fromArray(viewport.matrix)
         }),
@@ -32,22 +32,19 @@ export function connectCanvas(actions, canvasRendererFactory) {
 
 export function connectControlPane(actions) {
     return connect(
-        ({ life: { evolution: { state } } }) => ({ evolutionState: state }),
+        ({ life: { evolution } }) => ({ evolutionState: evolution }),
         actions
     )(ControlPane);
 }
 
 export function connectStatusBar() {
-    function mapStateToProps({ life }) {
-        const { world, evolution, viewport } = life;
-        const { population } = world;
-        const { generation } = evolution;
+    function mapStateToProps({ life: { world, viewport } }) {
         const zoom = viewport.matrix[0];
 
         return {
-            population,
-            generation,
-            zoom
+            zoom,
+            population: world.root.population,
+            generation: world.generation,
         };
     }
 

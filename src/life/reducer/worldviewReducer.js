@@ -19,25 +19,31 @@ export default function worldviewReducer(world = resetWorldview(), action = {}) 
             return resetWorldview();
 
         case IMPORT_DONE:
-            return action.root;
+            return { ...resetWorldview(), root: action.root };
     }
 
     return world;
 }
 
-function toggleCell(world, { x, y }) {
-    return Universe(world).toggleCell(x, y).root;
+function toggleCell({ root, generation }, { x, y }) {
+    const nextUniverse = Universe(root, generation).toggleCell(x, y);
+    return serialize(nextUniverse);
 }
 
-function nextGeneration(world) {
-    return Universe(world).evolve().root;
+function nextGeneration({ root, generation }) {
+    const nextUniverse = Universe(root, generation).evolve();
+    return serialize(nextUniverse);
 }
 
-function superGeneration(world) {
-    // liczyc po expandowaniu
-    return Universe(world).superEvolve().root;
+function superGeneration({ root, generation }) {
+    const nextUniverse = Universe(root, generation).superEvolve();
+    return serialize(nextUniverse);
 }
 
 function resetWorldview() {
-    return Universe.create().root;
+    return serialize(Universe.create());
+}
+
+function serialize({ root, generation }) {
+    return { root, generation };
 }

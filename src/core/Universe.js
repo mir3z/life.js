@@ -1,6 +1,6 @@
 import { TreeNode } from "./TreeNode";
 
-export function Universe(root) {
+export function Universe(root, generation = 0) {
     const isAlive = node => node.population > 0;
 
     function read(node, x, y) {
@@ -197,6 +197,7 @@ export function Universe(root) {
 
     return {
         root,
+        generation,
 
         getBoundaries() {
             const visit = (node, x, y, boundary) => {
@@ -259,22 +260,22 @@ export function Universe(root) {
                 nextRoot = expand(nextRoot);
             }
 
-            return Universe(write(nextRoot, x, y, !read(nextRoot, x, y)));
+            return Universe(write(nextRoot, x, y, !read(nextRoot, x, y)), generation);
         },
 
         evolve() {
-            return Universe(nextGeneration(expandIfNeeded(root)));
+            return Universe(nextGeneration(expandIfNeeded(root)), generation + 1);
         },
 
         superEvolve() {
             console.time("super")
             const r= expandIfNeeded(root);
-            console.warn("LL", r.level)
+            console.warn("LL", r.level, generation + Math.pow(2, r.level - 2));
             const n = nextSuperGeneration(r);
             console.timeEnd("super")
-            return Universe(n);
+            return Universe(n, generation + Math.pow(2, r.level - 2));
         }
     };
 }
 
-Universe.create = () => Universe(TreeNode.ofGivenLevel(3));
+Universe.create = () => Universe(TreeNode.ofGivenLevel(3), 0);

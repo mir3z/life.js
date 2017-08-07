@@ -22,7 +22,7 @@ export function createViewportActions() {
 
         fit: () => (dispatch, getState) => {
             const { life: { world } } = getState();
-            const { top, left, right, bottom } = Universe(world).getBoundaries();
+            const { top, left, right, bottom } = Universe(world.root).getBoundaries();
             const area = {
                 top: top * 15,
                 left: left * 15,
