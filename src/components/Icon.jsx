@@ -19,5 +19,6 @@ export const GLYPHS = {
     HELP_OUTLINE: "\uf1f5",
     CLOUD_UPLOAD: "\uf21e",
     ALERT_OCTAGON: "\uf1f2",
-    INFO_OUTLINE: "\uf1f7"
+    INFO_OUTLINE: "\uf1f7",
+    FOLDER_OUTLINE: "\uf224"
 };

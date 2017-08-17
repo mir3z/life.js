@@ -17,6 +17,7 @@ import TextFileReader from "./utils/TextFileReader";
 import { configure as configureLife, lifeReducer } from "./life";
 import { importReducer } from "./life/import";
 import { configure as configureAbout } from "./about";
+import { configure as configureLibrary } from "./library";
 
 export default function main(window) {
     const mainReducer = combineReducers({
@@ -51,6 +52,7 @@ export default function main(window) {
     };
 
     configureLife(context);
+    configureLibrary(context);
     configureAbout(context);
 
     location.trigger();
