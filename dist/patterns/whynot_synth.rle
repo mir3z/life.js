@@ -1,0 +1,9 @@
+#N whynot_synth
+#O Chris Cain
+#C Glider synthesis of Why Not
+#C http://conwaylife.com/wiki/why_not
+x = 139, y = 32, rule = B3/S23
+79bo$80bo$78b3o2$97bobo$98b2o$98bo$96bo$9bo86b2o37bo$7bobo37b2o46bobo
+9b2o25bobo$8b2o37b2o58b2o26bo$132b2obob2o$9bo81b3o41bo$8b2o83bo39bobob
+o$8bobo81bo42bo2$45bo35b3o21bo$44bobo36bo20bobo$o43bobo35bo21bobo$b2o
+42bo59bo$2o9$135b3o$135bo$136bo!

@@ -1,0 +1,13 @@
+#N byflops_synth
+#O Chris Cain
+#C Glider synthesis of by flops
+#C http://conwaylife.com/wiki/by_flops
+x = 307, y = 50, rule = B3/S23
+146bo$144bobo$145b2o20$265bo$263bobo$77bobo184b2o$78b2o$78bo151bo39bo$
+82bo53b3o37b3o50bobo37bobo$83b2o145bo39bo$82b2o2bobo39bo39bo$86b2o39bo
+bo37bobo$87bo39bobo37bobo54bo7b2o30bo7b2o30bo$128bo39bo53bobo7b2o28bob
+o7b2o28bobo$226bo39bo39bo$221b5o35b5o35b5o$2bo177bo45bo39bo39bo$bo178b
+obo39bobo37bobo11bobo23bobo$b3o176b2o42bo39bo11b2o26bo$42b2o38b2o48b2o
+38b2o4bo98bo$bo39bobo37bobo47bobo37bobo3b2o$b2o39bo39bo49bo39bo4bobo$o
+bo230bo39bo$226bo6bo32bo6bo$183b3o40bo6bo32bo6bo$183bo42bo39bo$184bo
+44b3o3b3o31b3o3b3o2$233bo39bo$233bo39bo$233bo39bo!
