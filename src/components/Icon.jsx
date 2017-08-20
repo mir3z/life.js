@@ -20,5 +20,8 @@ export const GLYPHS = {
     CLOUD_UPLOAD: "\uf21e",
     ALERT_OCTAGON: "\uf1f2",
     INFO_OUTLINE: "\uf1f7",
-    FOLDER_OUTLINE: "\uf224"
+    FOLDER_OUTLINE: "\uf224",
+    CARET_RIGHT: "\uf2f6",
+    CARET_DOWN: "\uf2f2",
+    VIEW_COMFY: "\uf31a"
 };

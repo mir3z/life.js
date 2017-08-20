@@ -17,13 +17,16 @@ import TextFileReader from "./utils/TextFileReader";
 import { configure as configureLife, lifeReducer } from "./life";
 import { importReducer } from "./life/import";
 import { configure as configureAbout } from "./about";
-import { configure as configureLibrary } from "./library";
 
-export default function main(window) {
+import { configure as configureLibrary } from "./library";
+import { libraryReducer } from "./library";
+
+export default function main(window, api) {
     const mainReducer = combineReducers({
         app: appReducer,
         life: lifeReducer,
-        import: importReducer
+        import: importReducer,
+        library: libraryReducer
     });
 
     const store = createStore(mainReducer, applyMiddleware(thunk, createLogger()));
@@ -42,6 +45,7 @@ export default function main(window) {
     const context = {
         window,
         store,
+        api,
         createClock: () => Clock(Raf(window)),
         createFileReader: () => TextFileReader(new window.FileReader()),
         addRoute: router.addRoute,

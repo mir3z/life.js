@@ -1,0 +1,117 @@
+.library {
+  background-color: #222;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  a.link {
+    color: #dedddd;
+    text-decoration: underline;
+  }
+
+  .load-pattern-wrapper {
+    margin: 50px 0;
+    text-align: center;
+  }
+
+  .library-dialog {
+    width: 1000px;
+    height: 726px;
+  }
+
+  .library-status {
+    text-align: center;
+    padding: 227px 0;
+  }
+
+  .library-content-wrapper {
+    display: flex;
+  }
+
+  .categories-tree {
+    overflow: auto;
+    height: 600px;
+    flex: 0 0 35%;
+    padding: 30px;
+    background: #333131;
+    margin: 1px 0;
+    border-right: 1px solid #352323;
+
+    .node {
+      cursor: pointer;
+      color: #dedddd;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    .expand-icon {
+      font-size: 30px;
+      display: block;
+      width: 22px;
+      height: 20px;
+      float: left;
+      line-height: 22px;
+      text-align: center;
+    }
+
+    .category-name {
+      font-weight: bold;
+    }
+
+    .patterns {
+      padding-left: 30px;
+      margin-bottom: 3px;
+      margin-top: 3px;
+
+      .pattern {
+        .icon {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+
+  .pattern-pane {
+    flex: 0 0 65%;
+    color: #dedddd;
+    overflow: hidden;
+    padding: 0 30px 30px;
+
+    .pattern-name {
+      text-align: center;
+    }
+
+    .entry {
+      .entry-name {
+        float: left;
+        width: 160px;
+        font-weight: bold;
+
+        &::after {
+          content: ":";
+        }
+      }
+
+      .entry-value {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 100%;
+      }
+    }
+  }
+
+  .footer {
+    font-size: 12px;
+    padding: 15px;
+  }
+
+  .body {
+    padding: 0;
+  }
+}

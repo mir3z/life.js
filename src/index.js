@@ -1,5 +1,6 @@
-import Perf from 'react-addons-perf';
+import fetch from "isomorphic-fetch";
+import createApi from "./api";
 import main from "./main";
 
-main(window);
-window.perf = Perf;
+const api = createApi(fetch.bind(window));
+main(window, api);

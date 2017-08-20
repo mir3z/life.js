@@ -49,8 +49,8 @@ export function configure(context) {
         }
     });
 
-    registerView("worldview", Worldview);
-    addRoute(PATH, () => changeView("worldview"));
+    registerView(WORLDVIEW_KEY, Worldview);
+    addRoute(PATH, () => changeView(WORLDVIEW_KEY));
 
     configureImport({
         ...context,
@@ -60,5 +60,5 @@ export function configure(context) {
 }
 
 export const PATH = "/life";
-
+const WORLDVIEW_KEY = "worldview";
 export { lifeReducer };
