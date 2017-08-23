@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import LibraryView from "./view/LibraryView.jsx";
 
-export function connectLibrary({ expand, fold, showPatternDetails }) {
+export function connectLibrary({ expand, fold, showPatternDetails, importFile }) {
     const mapStateToProps = ({ library }) => ({
         categories: library.categories,
         pattern: library.pattern,
@@ -10,6 +10,6 @@ export function connectLibrary({ expand, fold, showPatternDetails }) {
 
     return connect(
         mapStateToProps,
-        { expand, fold, showPatternDetails }
+        { expand, fold, showPatternDetails, importFile }
     )(LibraryView)
 }

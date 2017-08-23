@@ -1,4 +1,4 @@
-import { IMPORT_DONE } from "../actions/importActions";
+import { IMPORT_DONE } from "../../import-lib";
 import { RESET_EVOLUTION } from "../actions/evolutionActions";
 
 export default function metadataReducer(metadata = [], action) {

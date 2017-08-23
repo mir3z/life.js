@@ -6,7 +6,7 @@ export const CATEGORY_EXPAND = "library/category-expand";
 export const CATEGORY_FOLD = "library/category-fold";
 export const SHOW_PATTERN_DETAILS = "library/show-pattern-details";
 
-export function createActions(api) {
+export function createActions({ api, importFile, navigateToMainView }) {
 
     return {
         fetchLibrary() {
@@ -29,6 +29,17 @@ export function createActions(api) {
 
         fold(idx) {
             return { type: CATEGORY_FOLD, idx };
+        },
+
+        importFile(name) {
+            return dispatch => {
+                return api.readPattern(name)
+                    .then(blob => dispatch(importFile(blob)))
+                    .then(imported => {
+                        navigateToMainView();
+                        return imported;
+                    });
+            }
         }
     };
 }

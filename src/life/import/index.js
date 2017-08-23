@@ -1,11 +1,10 @@
 import { connectImportView } from "./connect";
-import { createImportActions } from "./actions";
 import { GLYPHS } from "../../components/Icon.jsx";
-import { importReducer } from "./reducer";
+
+export const PATH = "/import";
 
 export function configure({ registerNavigationItem, registerView, addRoute, changeView, importFile, importFromString }) {
-    const actions = createImportActions({ importFile, importFromString });
-    const ImportView = connectImportView(actions);
+    const ImportView = connectImportView({ importFile, importFromString });
 
     registerNavigationItem({
         label: "Import",
@@ -15,10 +14,8 @@ export function configure({ registerNavigationItem, registerView, addRoute, chan
         }
     });
 
-    registerView("import", ImportView);
-    addRoute(PATH, () => changeView("import"));
+    registerView(VIEW_NAME, ImportView);
+    addRoute(PATH, () => changeView(VIEW_NAME));
 }
 
-export const PATH = "/import";
-
-export { importReducer };
+const VIEW_NAME = "import";

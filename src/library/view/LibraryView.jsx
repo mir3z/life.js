@@ -27,10 +27,10 @@ export default function LibraryView({ categories, ...rest }) {
     );
 }
 
-const LibraryContent = ({ categories, pattern, ...rest }) => (
+const LibraryContent = ({ categories, pattern, importFile, ...rest }) => (
     <div className="library-content-wrapper">
         <CategoriesTree categories={ categories } { ...rest } />
-        <PatternPane pattern={ pattern } />
+        <PatternPane { ...{ importFile, pattern } } />
     </div>
 );
 
@@ -77,17 +77,17 @@ const Pattern = ({ pattern, onPatternSelect }) => (
     </div>
 );
 
-const PatternPane = ({ pattern }) => (
+const PatternPane = ({ importFile, pattern }) => (
     <div className="pattern-pane">
         <h3 className="pattern-name">{ pattern.name }</h3>
         { entriesBuilder(ENTRIES, pattern) }
-        { pattern.rle && <LoadPatternWrapper /> }
+        { pattern.rle && <LoadPatternWrapper importFile={ () => importFile(pattern.rle) } /> }
     </div>
 );
 
-const LoadPatternWrapper = () => (
+const LoadPatternWrapper = ({ importFile }) => (
     <div className="load-pattern-wrapper">
-        <Button className="load-pattern-btn" label="Load pattern" />
+        <Button className="load-pattern-btn" label="Load pattern" onClick={ importFile } />
     </div>
 );
 

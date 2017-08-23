@@ -1,23 +1,20 @@
-export const IMPORT_DONE = "import/done";
-
-export function createImportActions({ lifeImporter, navigateToLifeView, fitViewport }) {
+export function createImportActions({ importFile, importFromString, navigateToLifeView, fitViewport }) {
 
     function importLife(importStrategy) {
         return (...args) => {
             return dispatch => {
-                return importStrategy(...args)
-                    .then(({ universe, meta }) => {
-                        dispatch({ type: IMPORT_DONE, root: universe.root, meta });
+                return dispatch(importStrategy(...args))
+                    .then(imported => {
                         navigateToLifeView();
                         dispatch(fitViewport());
-                        return universe;
+                        return imported;
                     });
             };
         };
     }
 
     return {
-        importFile: importLife(lifeImporter.importFile),
-        importFromString: importLife(lifeImporter.importFromString)
+        importFile: importLife(importFile),
+        importFromString: importLife(importFromString)
     };
 }

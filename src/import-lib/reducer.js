@@ -1,6 +1,6 @@
 import { IMPORT_ERROR } from "./actions.js";
 
-export function importReducer(state = {}, action) {
+export function reducer(state = {}, action) {
 
     switch (action.type) {
         case IMPORT_ERROR:

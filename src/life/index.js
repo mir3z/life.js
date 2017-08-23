@@ -12,6 +12,7 @@ import {
 import { default as lifeReducer } from "./reducer";
 
 import { configure as configureImport } from "./import";
+import { createActions as createImportActions } from "../import-lib";
 import { parseRLE } from "../core/parser";
 import LifeImporter from "../core/LifeImporter";
 
@@ -30,9 +31,9 @@ export function configure(context) {
     const navigateToLifeView = () => changeLocation(PATH);
 
     const actions = createActions({
-        lifeImporter,
         navigateToLifeView,
-        clock: createClock()
+        clock: createClock(),
+        ...createImportActions(lifeImporter)
     });
 
     const Canvas = connectCanvas(actions, canvasRendererFactory);

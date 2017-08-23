@@ -14,8 +14,8 @@ import Raf from "./utils/Raf";
 import Clock from "./utils/Clock";
 import TextFileReader from "./utils/TextFileReader";
 
-import { configure as configureLife, lifeReducer } from "./life";
-import { importReducer } from "./life/import";
+import { configure as configureLife, lifeReducer, PATH as LIFE_PATH } from "./life";
+import { reducer as importReducer } from "./import-lib";
 import { configure as configureAbout } from "./about";
 
 import { configure as configureLibrary } from "./library";
@@ -39,6 +39,7 @@ export default function main(window, api) {
         console.warn(">>", currentLocation);
         router.accept(currentLocation);
     });
+    const changeLocation = (nextLocation) => location.change(nextLocation);
 
     const viewsBuilder = createViewsBuilder();
 
@@ -46,13 +47,14 @@ export default function main(window, api) {
         window,
         store,
         api,
+        changeLocation,
         createClock: () => Clock(Raf(window)),
         createFileReader: () => TextFileReader(new window.FileReader()),
         addRoute: router.addRoute,
-        changeLocation: location.change,
         changeView: (...views) => store.dispatch(changeView(...views)),
         registerView: viewsBuilder.add,
-        registerNavigationItem: (props) => store.dispatch(registerNavigationItem(props))
+        registerNavigationItem: (props) => store.dispatch(registerNavigationItem(props)),
+        navigateToMainView: () => changeLocation(LIFE_PATH)
     };
 
     configureLife(context);

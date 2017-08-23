@@ -2,7 +2,7 @@ import { Universe } from "../../core/Universe";
 
 import { TOGGLE_CELL_STATE } from "../actions/worldviewActions";
 import { RESET_EVOLUTION, NEXT_GENERATION, SUPER_GENERATION } from "../actions/evolutionActions";
-import { IMPORT_DONE } from "../actions/importActions";
+import { IMPORT_DONE } from "../../import-lib";
 
 export default function worldviewReducer(world = resetWorldview(), action = {}) {
     switch (action.type) {
