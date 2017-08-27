@@ -1,6 +1,6 @@
 import React from "react";
 import cls from "classnames";
-import debounce from "lodash.debounce";
+import debounce from "lodash/debounce";
 
 import "./Canvas.scss";
 

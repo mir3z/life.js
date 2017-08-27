@@ -1,10 +1,12 @@
 import React from "react";
 import cls from "classnames";
+
 import { Icon, GLYPHS } from "../../components/Icon.jsx";
 import { Link, fragment } from "../../components/Link.jsx";
+
 import "./Hamburger.scss";
 
-export class Hamburger extends React.Component {
+export default class Hamburger extends React.Component {
 
     constructor(props) {
         super(props);
@@ -33,12 +35,15 @@ export class Hamburger extends React.Component {
         );
     }
 }
+Hamburger.defaultProps = {
+    items: []
+};
 
-const HamburgerButton = ({ onClick }) => (
+export const HamburgerButton = ({ onClick }) => (
     <Icon className="hamburger-icon" onClick={ onClick } glyph={ GLYPHS.MENU } />
 );
 
-const HamburgerPanel = ({ items, active, onClose }) => (
+export const HamburgerPanel = ({ items = [], active, onClose }) => (
     <div className={ cls("hamburger-panel", active && "active") }>
         <CloseIcon onClick={ onClose } />
         <div className="content">

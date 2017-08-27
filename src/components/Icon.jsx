@@ -1,6 +1,6 @@
 import React from "react";
 import cls from "classnames";
-import noop from "lodash.noop";
+import noop from "lodash/noop";
 
 import "./Icon.scss";
 

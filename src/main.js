@@ -1,13 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware, combineReducers } from "redux";
-import { createLogger } from "redux-logger";
 import thunk from 'redux-thunk';
 
 import { Location } from "./app/router/Location";
 import { Router } from "./app/router/Router";
 
-import { App } from "./app/view/App.jsx";
+import App from "./app/view/App.jsx";
 import { changeView, registerNavigationItem, appReducer } from "./app";
 
 import Raf from "./utils/Raf";
@@ -29,16 +28,12 @@ export default function main(window, api) {
         library: libraryReducer
     });
 
-    const store = createStore(mainReducer, applyMiddleware(thunk, createLogger()));
-    // const store = createStore(mainReducer, applyMiddleware(thunk));
+    const store = createStore(mainReducer, applyMiddleware(thunk));
 
     const router = Router();
-    router.addRoute("/", () => location.change("/life"));
+    router.addRoute("/", () => location.change(LIFE_PATH));
 
-    const location = Location(window, (currentLocation) => {
-        console.warn(">>", currentLocation);
-        router.accept(currentLocation);
-    });
+    const location = Location(window, (currentLocation) => router.accept(currentLocation));
     const changeLocation = (nextLocation) => location.change(nextLocation);
 
     const viewsBuilder = createViewsBuilder();

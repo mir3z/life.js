@@ -1,15 +1,19 @@
 import React from "react";
 import { Provider, connect } from "react-redux";
-import { head, tail, isEmpty } from "ramda";
-import { Hamburger } from "./Hamburger.jsx";
+import { head, tail } from "lodash/array";
+import isEmpty from "lodash/isEmpty";
+
+import Hamburger from "./Hamburger.jsx";
 
 import "./App.scss";
 
-export const App = ({ store, views }) => (
-    <Provider store={ store }>
-        <AppWrapper views={ views } />
-    </Provider>
-);
+export default function App({ store, views }) {
+    return (
+        <Provider store={ store }>
+            <AppWrapper views={ views } />
+        </Provider>
+    );
+}
 
 const ConnectedHamburger = connect(({ app: { navigation } }) => ({ items: navigation }))(Hamburger);
 

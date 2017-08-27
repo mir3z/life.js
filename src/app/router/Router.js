@@ -29,10 +29,6 @@ export function Router() {
             if (route) {
                 route.onEnter(route.params, path);
             }
-        },
-
-        list() {
-            return routes.map(route => route.path);
         }
     };
 }
