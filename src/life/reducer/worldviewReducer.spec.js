@@ -1,6 +1,7 @@
 import { expect } from "chai";
 
 import { TreeNode } from "../../core/TreeNode";
+import { Universe } from "../../core/Universe";
 
 import worldviewReducer from "./worldviewReducer";
 import { TOGGLE_CELL_STATE } from "../actions/worldviewActions";
@@ -11,31 +12,31 @@ describe("worldviewReducer", () => {
     it("returns initial world by default", () => {
         const nextWorld = worldviewReducer();
 
-        expect(nextWorld.level).to.eql(3);
-        expect(nextWorld.population).to.eql(0);
+        expect(nextWorld.root).to.be.an("object");
+        expect(nextWorld.generation).to.eql(0);
     });
 
     it("returns world for the next generation", () => {
-        const world = TreeNode.ofGivenLevel(3);
+        const world = Universe.create();
         const nextWorld = worldviewReducer(world, { type: NEXT_GENERATION });
 
-        expect(nextWorld).to.not.equal(world);
+        expect(nextWorld.generation).to.eql(1);
     });
 
     it("resets world", () => {
         const world = TreeNode.ofGivenLevel(4);
         const nextWorld = worldviewReducer(world, { type: RESET_EVOLUTION });
 
-        expect(nextWorld.level).to.eql(3);
-        expect(nextWorld.population).to.eql(0);
+        expect(nextWorld.root).to.be.an("object");
+        expect(nextWorld.generation).to.eql(0);
     });
 
     it("toggles cell", () => {
         const x = 2;
         const y = 1;
-        const world = TreeNode.ofGivenLevel(3);
+        const world = Universe.create();
         const nextWorld = worldviewReducer(world, { type: TOGGLE_CELL_STATE, x, y });
 
-        expect(nextWorld.read(x, y)).to.equal(true);
+        expect(Universe(nextWorld.root).read(x, y)).to.equal(true);
     });
 });

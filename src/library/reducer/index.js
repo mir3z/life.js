@@ -11,7 +11,7 @@ const libraryReducer = combineReducers({
 });
 export default libraryReducer;
 
-function expandedReducer(state = {}, action) {
+export function expandedReducer(state = {}, action) {
     switch (action.type) {
         case CATEGORY_EXPAND:
             return expand(state, action.idx);
@@ -23,7 +23,7 @@ function expandedReducer(state = {}, action) {
     return state;
 }
 
-function categoriesReducer(state = { }, action) {
+export function categoriesReducer(state = { }, action) {
     switch (action.type) {
         case LIBRARY_FETCH_START:
             return { loading: true, error: false };

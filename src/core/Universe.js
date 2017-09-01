@@ -177,7 +177,7 @@ export function Universe(root, generation = 0) {
         // TreeNode.recache(root);
     }
 
-    window.re = () => TreeNode.recache(root);
+    // window.re = () => TreeNode.recache(root);
 
     function shouldExpand(node) {
         return node.level < 3
@@ -198,6 +198,10 @@ export function Universe(root, generation = 0) {
     return {
         root,
         generation,
+
+        read(x, y) {
+            return read(root, x, y);
+        },
 
         getBoundaries() {
             const visit = (node, x, y, boundary) => {

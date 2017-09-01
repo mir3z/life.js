@@ -146,7 +146,6 @@ TreeNode.recache = (root) => {
     console.timeEnd("recache");
 };
 
-window.t = TreeNode;
 
 // setInterval(() => console.warn("cache", window.t.__cache.size), 500);
 

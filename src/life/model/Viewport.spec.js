@@ -6,10 +6,10 @@ import { Viewport } from "./Viewport";
 describe("Viewport", () => {
     
     it("creates a Viewport from Transformation", () => {
-        const fakeTransformation = {};
-        const v = Viewport(fakeTransformation);
+        const transformation = {};
+        const v = Viewport({ transformation });
 
-        expect(v.transformation).to.equal(fakeTransformation);
+        expect(v.transformation).to.equal(transformation);
     });
 
     it("performs a zoom operation", () => {
@@ -30,7 +30,7 @@ describe("Viewport", () => {
             apply: mock().withArgs(zoomPivot).returns(centerPoint)
         };
 
-        const zoomed = Viewport(t1).zoom(zoomFactor, zoomPivot);
+        const zoomed = Viewport({ transformation: t1 }).zoom(zoomFactor, zoomPivot);
 
         expect(zoomed.transformation).to.equal(t4);
         assert.callOrder(t1.translate, t2.scale, t3.translate);
@@ -52,7 +52,7 @@ describe("Viewport", () => {
             invert: mock().returns(inv)
         };
 
-        const moved = Viewport(t1).move(ptFrom, ptTo);
+        const moved = Viewport({ transformation: t1 }).move(ptFrom, ptTo);
 
         expect(moved.transformation).to.equal(t2);
         t1.translate.verify();
@@ -68,7 +68,7 @@ describe("Viewport", () => {
             translate: mock().withArgs(dx, dy).returns(t2)
         };
 
-        const moved = Viewport(t1).moveBy(dx, dy);
+        const moved = Viewport({ transformation: t1 }).moveBy(dx, dy);
 
         expect(moved.transformation).to.equal(t2);
         t1.translate.verify();

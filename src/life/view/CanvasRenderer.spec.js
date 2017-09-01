@@ -97,7 +97,7 @@ describe("CanvasRenderer", () => {
             const ctx = fakeCanvasContext();
             const renderer = canvasRendererFactory(ctx, { cellSize });
             const world = {
-                getSize: stub().returns(worldSize)
+                level: 2
             };
 
             const r = renderer(fakeTransformation());
@@ -105,8 +105,7 @@ describe("CanvasRenderer", () => {
             stub(r, "renderNode");
             r.repaint(world);
 
-            const size = world.getSize() * cellSize;
-            assert.called(world.getSize);
+            const size = Math.pow(2, world.level - 1) * cellSize;
             assert.calledWith(r.renderNode, world, 2 * size, -size, -size);
         });
     });
