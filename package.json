@@ -6,7 +6,7 @@
   "scripts": {
     "build": "NODE_ENV=production webpack",
     "dev": "webpack-dev-server --hot",
-    "test": "mocha --opts ./mocha.opts src/**/*.spec.js"
+    "test": "mocha ./**/*.spec.js"
   },
   "author": "mirz <mirz.hq@gmail.com>",
   "license": "MIT",

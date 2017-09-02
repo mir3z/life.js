@@ -1,0 +1,4 @@
+--compilers js:babel-register,pegjs:./test/peg-register.js
+--require babel-polyfill
+--require ignore-styles
+--require ./test/mocha.config.js
