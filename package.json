@@ -8,7 +8,7 @@
     "dev": "webpack-dev-server --hot",
     "test": "mocha ./**/*.spec.js"
   },
-  "author": "mirz <mirz.hq@gmail.com>",
+  "author": "mirz <that.mirz@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.5",
@@ -16,7 +16,7 @@
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react-dom": "^15.6.1",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
