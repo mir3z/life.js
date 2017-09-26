@@ -173,12 +173,6 @@ export function Universe(root, generation = 0) {
         return node.__superMemoized;
     }
 
-    if (TreeNode.__cache.size > (1 << 17)) {
-        // TreeNode.recache(root);
-    }
-
-    // window.re = () => TreeNode.recache(root);
-
     function shouldExpand(node) {
         return node.level < 3
             || node.nw.population !== node.nw.se.se.population
@@ -208,7 +202,6 @@ export function Universe(root, generation = 0) {
                 if (!node) {
                     return;
                 }
-
 
                 if (node.level === 0) {
                     if (node.population) {
@@ -272,12 +265,9 @@ export function Universe(root, generation = 0) {
         },
 
         superEvolve() {
-            console.time("super")
-            const r= expandIfNeeded(root);
-            console.warn("LL", r.level, generation + Math.pow(2, r.level - 2));
-            const n = nextSuperGeneration(r);
-            console.timeEnd("super")
-            return Universe(n, generation + Math.pow(2, r.level - 2));
+            const expanded = expandIfNeeded(root);
+            const nextRoot = nextSuperGeneration(expanded);
+            return Universe(nextRoot, generation + Math.pow(2, expanded.level - 2));
         }
     };
 }

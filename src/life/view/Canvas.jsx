@@ -25,9 +25,9 @@ export class Canvas extends React.Component {
             const dx = (viewport.width - width) / 2;
             const dy = (viewport.height - height) / 2;
 
-            resize({ width, height });
+            resize(width, height);
             this.moveBy(dx, dy);
-        }, 100);
+        }, DEBOUNCE_TIME);
 
         this.handleKey = (e) => this.onKeyDown(e.key);
     }
@@ -220,3 +220,5 @@ const KEY_MAP = {
     End: [-10, 10],
     PageDown: [10, 10]
 };
+
+const DEBOUNCE_TIME = 100;

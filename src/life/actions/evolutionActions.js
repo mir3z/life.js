@@ -1,3 +1,5 @@
+import { TreeNode } from "../../core/TreeNode.js";
+
 export const START_EVOLUTION = "life/evolution/start";
 export const STOP_EVOLUTION = "life/evolution/stop";
 export const RESET_EVOLUTION = "life/evolution/reset";
@@ -37,7 +39,12 @@ export function createEvolutionActions({ clock }) {
             };
         },
 
-        resetEvolution: () => ({ type: RESET_EVOLUTION })
+        resetEvolution: () => {
+            return (dispatch) => {
+                TreeNode.__cache.reset();
+                return dispatch({ type: RESET_EVOLUTION });
+            };
+        }
     };
 }
 

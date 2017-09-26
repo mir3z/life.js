@@ -18,7 +18,7 @@ export function createViewportActions() {
 
         reset: () => ({ type: RESET }),
 
-        resize: ({ width, height }) => ({ type: RESIZE, width, height }),
+        resize: (width, height) => ({ type: RESIZE, width, height }),
 
         fit: () => (dispatch, getState) => {
             const { life: { world } } = getState();
@@ -31,7 +31,7 @@ export function createViewportActions() {
             };
 
 
-            dispatch({ type: FIT, area });
+            return dispatch({ type: FIT, area });
         }
     };
 }

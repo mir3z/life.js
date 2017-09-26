@@ -19,7 +19,7 @@ export function canvasRendererFactory(ctx, { cellSize = 15, borderSize = 0.8 } =
                 ctx.save();
                 ctx.setTransform(1, 0, 0, 1, 0, 0);
 
-                ctx.fillStyle = "#222";
+                ctx.fillStyle = "#333";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
                 ctx.restore();
@@ -30,11 +30,7 @@ export function canvasRendererFactory(ctx, { cellSize = 15, borderSize = 0.8 } =
             repaint(world) {
                 this.clear();
 
-                // const size = world.getSize() * cellSize;
                 const size = Math.pow(2, world.level - 1) * cellSize;
-
-                ctx.fillStyle = "rgba(255, 255, 255, 0.2)";
-                ctx.fillRect(-size, -size, size * 2, size * 2);
 
                 this.renderNode(world, size * 2, -size, -size);
 

@@ -1,3 +1,5 @@
+import safeMemoryCache from "safe-memory-cache";
+
 export function TreeNode({ nw, ne, sw, se, level = 0, population = 0 } = {}) {
     return canonicalize({
         nw, ne, sw, se,
@@ -36,8 +38,9 @@ TreeNode.ofGivenLevel = level => {
 
 function NodeCache() {
     let __id = 1;
-    let size = 0;
-    let cache = {};
+    const cache = safeMemoryCache({
+        maxTTL: 15 * 1000
+    });
 
     function assignId(node) {
         node.__id = node.__id || __id++;
@@ -67,45 +70,25 @@ function NodeCache() {
     const equals = n1 => n2 => n1.nw === n2.nw && n1.ne === n2.ne && n1.sw === n2.sw && n1.se === n2.se;
 
     return {
-        get size() {
-            return size;
-        },
-
         reset() {
-            __id = 1;
-            size = 0;
-            cache = {};
+            cache.clear();
         },
 
-        foo() {
-            let s = 0;
-            console.time("ref")
-            for (const key in cache) {
-                for (const idx in cache[key]) {
-                    s += hashCode(cache[key][idx]);
-                }
-            }
-            console.timeEnd("ref")
-            console.warn(s);
-        },
-
-        setOrGet(node) {
-            const hash = hashCode(node);
-            const nodeList = cache[hash];
+        upsert(node) {
+            const hash = String(hashCode(node));
+            const nodeList = cache.get(hash);
 
             if (nodeList) {
                 const cached = nodeList.find(equals(node));
 
                 if (!cached) {
                     nodeList.push(node);
-                    size++;
                     return node;
                 }
 
                 return cached;
             } else {
-                cache[hash] = [node];
-                size++;
+                cache.set(hash, [node]);
                 return node;
             }
         }
@@ -114,42 +97,7 @@ function NodeCache() {
 
 TreeNode.__cache = NodeCache();
 
-TreeNode.recache = (root) => {
-    console.time("recache");
-    console.warn("recaching", TreeNode.__cache.size);
-
-    TreeNode.__cache.reset();
-
-    // const _cache = {
-    //     size: 0,
-    //     store: {}
-    // };
-
-    function re(node) {
-        if (!node) {
-            return;
-        }
-
-        canonicalize(node, TreeNode.__cache);
-
-        re(node.nw);
-        re(node.ne);
-        re(node.sw);
-        re(node.se);
-        re(node.memoized);
-        re(node.superMemoized);
-    }
-
-    re(root);
-
-    console.warn("recaching done", TreeNode.__cache.size);
-    console.timeEnd("recache");
-};
-
-
-// setInterval(() => console.warn("cache", window.t.__cache.size), 500);
-
 function canonicalize(node, cache) {
-    return cache.setOrGet(node);
+    return cache.upsert(node);
 }
 

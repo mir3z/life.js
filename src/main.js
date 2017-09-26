@@ -15,7 +15,6 @@ import TextFileReader from "./utils/TextFileReader";
 
 import { configure as configureLife, lifeReducer, PATH as LIFE_PATH } from "./life";
 import { reducer as importReducer } from "./import-lib";
-import { configure as configureAbout } from "./about";
 
 import { configure as configureLibrary } from "./library";
 import { libraryReducer } from "./library";
@@ -54,7 +53,6 @@ export default function main(window, api) {
 
     configureLife(context);
     configureLibrary(context);
-    configureAbout(context);
 
     location.trigger();
 
