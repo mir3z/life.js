@@ -15,6 +15,6 @@ export default function createApi(fetch) {
 
     return {
         fetchLibrary: () => get("library.json"),
-        readPattern: (filename) => get(`/patterns/${ filename }`, { type: "blob" })
+        readPattern: (filename) => get(`patterns/${ filename }`, { type: "blob" })
     };
 }

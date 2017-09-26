@@ -29,7 +29,7 @@ describe("API", () => {
         const file = "glider.rle";
         const fetch = mock()
             .once()
-            .withArgs("/patterns/glider.rle", { method: "GET" })
+            .withArgs("patterns/glider.rle", { method: "GET" })
             .returnsPromise()
             .resolves({
                 ok: true,
