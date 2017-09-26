@@ -19009,7 +19009,7 @@ function createApi(fetch) {
             return get("library.json");
         },
         readPattern: function readPattern(filename) {
-            return get("/patterns/" + filename, { type: "blob" });
+            return get("patterns/" + filename, { type: "blob" });
         }
     };
 }
